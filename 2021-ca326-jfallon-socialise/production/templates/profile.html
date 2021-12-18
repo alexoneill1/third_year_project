@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>    
+
+
+  <script
+      defer
+      src="{{url_for('static', filename='scripts/profile.js')}}"
+    ></script>
+  
+  <style>
+
+    .cover {
+        background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+        background-size: cover;
+        background-repeat: no-repeat
+    }
+
+    /* setting standards for the body of the page, like height and colour */
+    body {
+        background: linear-gradient(to right, rgb(255,204,203), rgb(0, 174, 255));
+        min-height: 100vh
+    }
+
+
+    /* using media queries to make a reactive title */
+    /* If screen size is 922px wide, or more, set the font-size of <div> to 200px */
+    @media screen and (min-width: 922px) {
+        div.h1title {
+          font-size: 200px;
+          font-weight: 900;
+        }
+      }
+    
+    @media screen and (max-width: 922px) {
+        div.h1title {
+          font-size: 175px;
+          font-weight: 900;
+        }
+      }
+
+    @media screen and (max-width: 700px) {
+      div.h1title {
+        font-size: 150px;
+        font-weight: 900;
+      }
+    }
+
+    @media screen and (max-width: 500px) {
+      div.h1title {
+        font-size: 100px;
+        font-weight: 900;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      div.h1title {
+        font-size: 75px;
+        font-weight: 900;
+      }
+    }
+
+    @media screen and (max-width: 300px) {
+      div.h1title {
+        font-size: 40px;
+        font-weight: 900;
+      }
+    }
+
+    @media screen and (max-width: 250px) {
+      div.h1title {
+        font-size: 30px;
+        font-weight: 900;
+      }
+    }
+
+    @media screen and (max-width: 150px) {
+      div.h1title {
+        font-size: 40px;
+        font-weight: 900;
+      }
+    }
+
+    @media screen and (max-width: 100px) {
+      div.h1title {
+        font-size: 40px;
+        font-weight: 900;
+      }
+    }
+
+    /* the profile card set colour and border, padding */
+    .card {
+      background-color: #CBFEFF;
+      border-radius: 40px;
+      padding-left: 20px;
+      padding-bottom:20px;
+    }
+
+    /* profile Name text */
+    .profile-font{
+      font-size: 40px;
+      font-weight: 900;
+    }
+
+    /* table element styling attributes */
+    .table-card {
+      background-color: #FF7547;
+      font-size: 25px;
+      font-weight: 450;
+    }
+
+    /* bio card (below user name) specific attibutes for styling */
+    .bio-card{
+      background-color: #58BBEA;
+      padding: 30px;
+      font-size: 25px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- responsive nav-bar to all screen sizes -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- logo acts as a link to homepage -->
+    <a href="/home" class="navbar-brand"><img src="{{url_for('static', filename='images/logo.png')}}" width="150"/></a>
+      <!-- button that will hold nav-bar items but only reveled on smaller screens -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <!-- elements contained in nav-bar -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav mr-auto">
+
+        <!-- link back to home, as logo might not be intuitive for everyone -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+        
+        <!-- dropdown to reveal my profile specific options -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/profile">Profile Page</a>
+            <div class="dropdown-divider"></div>
+            <!-- link to log out of account, return user to welcome page -->
+            <a class="dropdown-item" href="/logout">Logout</a>
+            <div class="dropdown-divider"></div>
+            
+            <!-- delete account functionality (including the modal) is nested in the nav bar -->
+            <button class="delete-account" id="delete-account" onclick="delete_account();">DELETE ACCOUNT</button>
+
+          </div>
+          
+          <!-- link included to go to my events page -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="/my-events">My Events</a>
+          </li>
+
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- container is used to enable bootstrap grid system -->
+  <div class="container">
+
+    <!-- jumbotron is used to add padding to title -->
+    <div class="jumbotron">
+      <!-- using h1title to reference media queries as stated above in css -->
+      <div class="h1title">Profile</div>    
+    </div>
+
+    <!-- creating row to hold profile card and events table -->
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- use bootstrap card to form element, px is used for left and right padding -->
+        <div class="card text-center px-4 pt-0 pb-4">
+          <!-- use media to add padding -->
+            <div class="media align-items-end profile-head">
+              <br>
+              <br>
+              <!-- use place holder default use icon, display in rounded circle -->
+              <img src="{{url_for('static', filename='images/avatar.png')}}" width="40%" class="rounded-circle"/>
+                <br>
+                <br>
+                <!-- Changed to a dropdown -->
+                <!-- Edit bio using a submit form -->
+                <div class="dropdown">
+                  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Edit Profile
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">
+                      <form method="POST" action="">
+                        <!-- ask user tp enter their new bio -->
+                        <p>New Bio:</p>    
+                        <input type="text" name="profile_bio"/>
+                        <input type="submit">
+                      </form>
+                      <form>
+                    </a>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <!-- username and bio sent as argument in render_template() in flask file -->
+                <h4 class="mt-0 mb-0 profile-font">{{ full_name }}</h4>
+                <br>
+                <div class="desc bio-card rounded">{{ bio }}</div>
+  
+            </div>
+        </div>
+      </div>
+      <!--DISPLAY ALL USER'S EVENTS IN A TABLE-->
+      <!-- add margin and spacing determined by screen size -->
+      <div class="col-sm-6 mb-3 mt-3">
+        <!-- bootstrap attributes to determine table apperence and padding -->
+        <table id="my-events" class="table table-dark table-borderless table-primary table-card" style="width: 100%">
+          <tr>
+            <!-- taking table elements from database and displaying them -->
+            <th>Event Name</th>
+              <th>Location</th>
+              <th>Date</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--Delete Account Modal-->
+  <div id="delete-account-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title">Are you sure you want to delete your account?</h1>
+        </div>
+        <!-- give user warning that the action will be final -->
+        <div class="modal-body">
+          <h3>This action can not be undone!</h3>
+        </div>
+        <!-- footer contains button to link that will delete the account in the flask file and then in the database -->
+        <div class="modal-footer">
+          <button
+            class="delete-account"
+            id="delete-account"
+            onclick="location.href='/delete-account'" type="button"
+            >DELETE ACCOUNT
+          </button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- take in userEvents sent from flask-->
+  <script>
+    let userEvents = JSON.parse(`{{user_events|safe}}`); //get the json data that has been sent over from the serer. Once we have it, loop through and display all participants in the event on the event page.
+  </script>
+  
+  <!-- <script>
+
+
+    // when user clicks close, the modal will disapear
+    const closeModalButton = document
+      .getElementById("close-modal")
+      .addEventListener("click", function () {
+        $("#delete-account-modal").modal("hide");
+      });
+
+    });
+  </script> -->
+
+  <!-- links to bootstrap CDN -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

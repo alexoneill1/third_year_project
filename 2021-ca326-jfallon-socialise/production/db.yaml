@@ -1,0 +1,10 @@
+#YAML is a human-readable data serialization standard that can be used in conjunction with all programming languages and is often used to write configuration files.
+
+mysql_host: "localhost"
+mysql_user: "root"
+mysql_password: "Georgiao1" #Put database password here
+mysql_db: "socialise" #put database schema name here
+#mysql_host: "student.computing.dcu.ie"
+#mysql_user: "3rd21_1_user"
+#mysql_password: "3rd21_1_pwd3048"
+#mysql_db: "3rdProject21_1"

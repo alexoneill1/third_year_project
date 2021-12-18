@@ -1,0 +1,220 @@
+<html>
+  <head>
+    <title>My Events</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <script rel= "stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>    
+
+
+    <style>
+      
+      /* set colour and height of the background style, filling the body */
+      body {
+        background: linear-gradient(to right, #e96443, #904e95);
+        min-height: 100vh
+      }
+
+      /* the table card colour and other styling elements */
+      .table-card {
+        background-color : white;
+        font-size: 20px;
+        font-weight: 0;
+        padding: 5%;
+      }
+
+      /* using media queries to make the heading size and weight responsive to the screen size */
+      @media screen and (min-width: 922px) {
+        div.h1title {
+          font-size: 100px;
+          font-weight: 450;
+        }
+      }
+    
+    @media screen and (max-width: 922px) {
+        div.h1title {
+          font-size: 100px;
+          font-weight: 450;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        div.h1title {
+          font-size: 75px;
+          font-weight: 300;
+        }
+      }
+
+      /* If screen size is 600px wide, or less, set the font-size of <div> to 30px */
+      @media screen and (max-width: 500px) {
+        div.h1title {
+          font-size: 60px;
+          font-weight: 250;
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        div.h1title {
+          font-size: 75px;
+          font-weight: 200;
+        }
+      }
+
+      @media screen and (max-width: 300px) {
+        div.h1title {
+          font-size: 40px;
+          font-weight: 200;
+        }
+      }
+
+      @media screen and (max-width: 250px) {
+        div.h1title {
+          font-size: 30px;
+          font-weight: 200;
+        }
+      }
+
+      @media screen and (max-width: 150px) {
+        div.h1title {
+          font-size: 30px;
+          font-weight: 200;
+        }
+      }
+
+      @media screen and (max-width: 100px) {
+        div.h1title {
+          font-size: 25px;
+          font-weight: 200;
+        }
+      }
+
+
+
+
+
+      </style>
+
+  </head>
+
+  <!-- contents of page -->
+  <body>
+
+    <!-- creating a repsonsive navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="/home" class="navbar-brand">
+        <!-- add socialise logo to the nav-bar -->
+        <img src="{{url_for('static', filename='images/logo.png')}}" width="150"/></a>
+      <!-- add button for nav-bar when collapsed on smaller screens -->
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- items contained in the nav-bar -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav mr-auto">
+
+            <!-- link to return to the homepage -->
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="/home">Home</a>
+            </li>
+
+            <!-- dropdown containing profile options -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="/profile" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Profile</a>
+              <!-- elements contained in the dropdown -->
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/profile">Profile Page</a>
+                <div class="dropdown-divider"></div>
+                <!-- link to logout of profile, returning user to welcome page -->
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <!-- container is used to enable bootstraps grid system, also specifies custom margins -->
+  <div class="container mb-3 mt-3">
+
+    <!-- jumbotron is a bootstrap element used to format titles -->
+    <div class="jumbotron">
+      <!-- this heading is using the media queries we specified above in the css, to be respsonsive to all page sizes -->
+      <div class="h1title">A summary of your Events</div> 
+      <h3>Click on any event to jump straight to that event!</h3>   
+    </div>
+
+    <br>
+    <br>
+
+    <!-- styling the first row on the page, created by bootstrap row element. In this we can add columns to appropriately space a responsive layout -->
+    <div class="row">
+
+      <!-- multiple column tags specify how much screen space this column should take up, on different screen sizes  -->
+      <div class="col-sm-12 col-md-12 col-lg-12 mb-3 mt-3">
+        
+        <!-- create a responsive table that displays information from the database -->
+        <div class="table-responsive">
+          <!-- using bootstrap elements, we can create a well formatted table to display our event information -->
+          <table id="my-events" class="table table-card table-primary table-striped">
+            <tr>
+              <!-- table headings -->
+              <th scope="col">Event Name</th>
+              <th scope="col">Location</th>
+              <th scope="col">Date</th>
+            </tr>
+          </table>
+        
+        </div>
+
+      </div>
+    
+    </div>
+
+  </div>
+
+
+  <script>
+    //We didn't use a function here as we intended our profile page events to be displayed differently. Here in the my events page, we wanted the user to have access to the link to the each event, rather than having to go back to the map interface to find the event 
+    let userEvents = JSON.parse(`{{user_events|safe}}`); //get the json data that has been sent over from the serer. Once we have it, loop through and display all the user's events  on the my-events page.
+    //console.log(userEvents);
+    userEvents.forEach((element) => {
+      //loop through every element in the user events data
+      let table = document.getElementById("my-events"); //get the table id from the my-events html
+      let newrow = document.createElement("tr"); //create a new row
+      table.append(newrow); //append this row to the table
+
+      let event_name = document.createElement("td"); //create table data cell
+      event_name.innerHTML = `<a href="/eventpage?lat=${element["latitude"]}&lng=${element["longitude"]}" style="text-decoration:none; outline: none; border: 0px; padding: 0px; background: White;">${element["event_name"]} </a>`; //change the inner html of the event name variable to the name of the event
+      newrow.appendChild(event_name); //add this value to the row
+
+      let location = document.createElement("td"); //create table data cell
+      location.innerHTML = element["location"]; //change the inner html of the location variable to the location of the event
+      newrow.appendChild(location); //add this value to the row
+
+      let date = document.createElement("td"); //create table data cell
+      date.innerHTML = element["date"]; //change the inner html of the date variable to the date of the event
+      newrow.appendChild(date); //add this value to the row
+
+      // let linkToEvent = document.createElement("td"); //create table data cell
+      // linkToEvent.innerHTML = `<a href="/eventpage?lat=${element["latitude"]}&lng=${element["longitude"]}">${element["event_name"]}</a>`; //change the inner html of the linkToEvent variable to the link to the event containing the event coordinates
+      // newrow.appendChild(linkToEvent); //add this value to the row
+    });
+  </script>
+
+
+  
+  <!-- elements to enable bootstraps grid system and css/js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+  
+
+  </body>
+</html>

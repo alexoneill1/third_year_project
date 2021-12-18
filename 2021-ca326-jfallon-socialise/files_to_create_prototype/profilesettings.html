@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <header>
+      <a href="/login"></a><h1>SOCIALISE</h1></a>
+    </header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SOCIALISE</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}">
+    <script src="assets/scripts/vendor.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+  </head>
+  <body style="background: url('static/styles/background.png')">
+    <section id="health-levels">
+      <h2>WELCOME TO SETTINGS</GS>
+      <!--<progress id="monster-health" max="100" value="100">100%</progress>-->
+      <h2>WHAT WOULD YOU LIKE TO CHANGE?</h2>
+      <!--<progress id="player-health" max="100" value="100">100%</progress>-->
+    </section>
+    <section id="controls">
+      <a href="/biochange"><button id="attack-btn">BIO</button></a>
+      <a href="/createaccount"><button id="attack-btn">PROFILE PICTURE</button></a>
+      <!-- <button id="heal-btn">Forgot Password</button>
+      <button id="log-btn">Get Help</button> -->
+    </section>
+    <script type= "text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
+  </body>
+</html>

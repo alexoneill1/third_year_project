@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <header>
+        <button class="btn"><i class="fa fa-home"></i></button>
+        <button class="btn"><i class="fa fa-bars"></i></button>
+        <button class="btn"><i class="fa fa-trash"></i></button>
+        <button class="btn"><i class="fa fa-close"></i></button>
+        <button class="btn"><i class="fa fa-folder"></i></button>
+
+        <a href="/login"></a><h1>SOCIALISE</h1></a>
+      <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!-- Add font awesome icons to buttons  -->
+    </header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SOCIALISE</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}">
+    <script src="assets/scripts/vendor.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+  </head>
+  <body style="background: url('static/styles/background.png')">
+    <!-- <p>Icon buttons:</p>
+    <button class="btn"><i class="fa fa-home"></i></button>
+    <button class="btn"><i class="fa fa-bars"></i></button>
+    <button class="btn"><i class="fa fa-trash"></i></button>
+    <button class="btn"><i class="fa fa-close"></i></button>
+    <button class="btn"><i class="fa fa-folder"></i></button> -->
+    <section id="health-levels">
+      <h2>WELCOME TO SOCIALISE</h2>
+      <!--<progress id="monster-health" max="100" value="100">100%</progress>-->
+      <h2>TO CREATE AN ACCOUNT PLEASE ENTER IN YOUR DETAILS BELOW</h2>
+      <!--<progress id="player-health" max="100" value="100">100%</progress>-->
+    </section>
+    <section id="controls">
+      <form action="/action_page.php" method="get">
+        <label for="fname">First name:</label>
+        <input type="text" id="fname" name="fname"><br><br>
+        <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"><br><br>
+        <label for="email">E-mail:</label>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="pword">Password:</label>
+        <input type="text" id="pword" name="pword"><br><br>
+        <label for="rpword">Re-enter Password:</label>
+        <input type="text" id="rpword" name="rpword"><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </section>
+    <script type= "text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <header>
+      <a href="/login"></a><h1>SOCIALISE</h1></a>
+    </header>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SOCIALISE</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}">
+    <script src="assets/scripts/vendor.js" defer></script>
+    <script src="assets/scripts/app.js" defer></script>
+
+    <style>
+        .full_name{
+            font-size: xx-large;
+        }
+        .bio{
+            font-size: x-large;
+        }
+    </style>
+  </head>
+  <body style="background: url('static/styles/background.png')">
+    <section id="health-levels">
+      <!--<progress id="monster-health" max="100" value="100">100%</progress>-->
+      <h2>WHAT WOULD YOU LIKE YOUR BIO TO SAY?</h2>
+      <!--<progress id="player-health" max="100" value="100">100%</progress>-->
+    </section>
+    <section id="controls">
+        <form method="POST" action="">
+            Profile Bio <input type="text" name="profile_bio"/>
+            <input type="submit">
+        </form>
+        <div class="full_name">{{ full_name }}</div>
+        <div class="bio">{{ bio }}</div> 
+    </section>
+    <script type= "text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
+  </body>
+</html>
+
